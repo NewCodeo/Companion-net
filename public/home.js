@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-  'use strict'
+
   var socket = io();
   var myPeer = new Peer();
 
