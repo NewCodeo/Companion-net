@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
   'use strict'
-  var socket = io.connect('https://192.168.1.69:3000');
+  var socket = io();
   var myPeer = new Peer();
 
   let presentName;
