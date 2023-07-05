@@ -59,10 +59,22 @@ olineUser(names = names.filter(name => name !== userName))
            
           if ($('#chat_msg').val()) {
             socket.emit('notyping',$('.header-contact').text())
+            let time = New date()
+            let hr = time.getHours();
+          let am_pm= 'AM'
+            let min = time.getMinutes();
+            if(hr>=12){
+              if(hr>12)hr -=12
+              am_pm = 'PM' 
+            }
+            else if(hr==0){
+              hr = 12
+              am_pm = 'AM'
+            }
             socket.emit('chat_msg', $('#chat_msg').val(), $('.header-contact').text(), userName)
             $('<li/>', {
               class: 'list-group-item  d-flex sender justify-content-between align-items-center',
-              text: $('#chat_msg').val(),
+              text:`${hr}:${min}:${am_pm}\n`+ $('#chat_msg').val(),
 
               appendTo: $('.messages')
             })
