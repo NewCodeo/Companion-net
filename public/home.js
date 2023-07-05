@@ -59,7 +59,7 @@ olineUser(names = names.filter(name => name !== userName))
            
           if ($('#chat_msg').val()) {
             socket.emit('notyping',$('.header-contact').text())
-            let time = new date()
+            let time = new Date()
             let hr = time.getHours();
           let am_pm= 'AM'
             let min = time.getMinutes();
@@ -293,7 +293,7 @@ call.on('stream', (userStream) => {
     e.preventDefault()
   })
   socket.on('chat_message', (msg, sender) => {
-       let time = new date()
+       let time = new Date()
             let hr = time.getHours();
           let am_pm= 'AM'
             let min = time.getMinutes();
