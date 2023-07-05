@@ -74,7 +74,7 @@ olineUser(names = names.filter(name => name !== userName))
             socket.emit('chat_msg', $('#chat_msg').val(), $('.header-contact').text(), userName)
             $('<li/>', {
               class: 'list-group-item  d-flex sender justify-content-between align-items-center',
-           html:`${hr}:${min}:${am_pm}`+'<br/>'+ sender + ':  ' + msg,
+           html:`${hr}:${min}:${am_pm}`+'<br/>'+ `you-->${$('.header-contact').text()}:  ` + $('#chat_msg').val(),
 
               appendTo: $('.messages')
             })
