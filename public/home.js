@@ -74,7 +74,7 @@ olineUser(names = names.filter(name => name !== userName))
             socket.emit('chat_msg', $('#chat_msg').val(), $('.header-contact').text(), userName)
             $('<li/>', {
               class: 'list-group-item  d-flex sender justify-content-between align-items-center',
-              text:`${hr}:${min}:${am_pm}\n`+ $('#chat_msg').val(),
+           html:`${hr}:${min}:${am_pm}`+'<br/>'+ sender + ':  ' + msg,
 
               appendTo: $('.messages')
             })
@@ -307,7 +307,7 @@ call.on('stream', (userStream) => {
             }
     $('<li/>', {
       class: 'list-group-item  d-flex receiver justify-content-between align-items-center',
-      text:`${hr}:${min}:${am_pm}\n`+ sender + ':  ' + msg,
+      html:`${hr}:${min}:${am_pm}`+'<br/>'+ sender + ':  ' + msg,
       css: 'position:absolute;top:0px;width:200px;overflow:scroll;float:right;margin-top:100px;background:teal',
       appendTo: $('.messages')
     })
