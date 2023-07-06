@@ -1,12 +1,13 @@
 var express  = require('express')
 var http = require('http');
+const compression= require('compression')
 let path = require('path')
 let fs = require('fs')
 var app = express()
 var server = http.createServer(app)
 let io = require('socket.io')(server)
 let res;
-
+app.use(compression())
 let userOnline=[];
 let Collection = []
 
