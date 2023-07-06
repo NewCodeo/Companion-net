@@ -81,7 +81,29 @@ olineUser(names = names.filter(name => name !== userName))
             $('<br/>', {
               appendTo: $('.messages')
             })
-            $('#chat_msg').val('')
+            $('#chat_msg').val('');
+             if (document.getElementById('browse').value) {
+        
+              let files = document.getElementById('browse').files[0];
+              $('<li/>', {
+                class: 'list-group-item  d-flex sender justify-content-between align-items-center',
+                text: files.name,
+
+                appendTo: $('.messages')
+              })
+              $('<br/>', {
+                appendTo: $('.messages')
+              })
+              let reader = new FileReader()
+              reader.onload = (e) => {
+                let buffer = new Uint8Array(reader.result)
+                console.log('buffering..')
+                myfiles({ FilesSize: buffer.length, fileName: files.name }, buffer, $('.header-contact').text())
+
+              }
+              reader.readAsArrayBuffer(files)
+              document.getElementById('browse').value = null
+            }
 
 
 
@@ -110,6 +132,9 @@ olineUser(names = names.filter(name => name !== userName))
               document.getElementById('browse').value = null
             }
           }
+        else if($('.header-contact').text()===''||!$('.header-contact').text()){
+          alert('you haven\'t any partner to chat,try to see in online user and click there to any user for chatting')
+        }
 
 
     
