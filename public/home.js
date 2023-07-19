@@ -291,10 +291,12 @@ call.on('stream', (userStream) => {
 
     console.log(image.src)
     image.className = 'fileImg';
-
+    link.styel = "position: absolute;right:0;bottom:0;";
+image.append(link);
    
     image.addEventListener('load',()=>{
-      URL.revokeObjectURL(image.src)
+      URL.revokeObjectURL(image.src);
+      
     })
     $('<li/>', {
       class: 'list-group-item  d-flex receiver justify-content-between align-items-center',
