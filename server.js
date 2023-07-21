@@ -22,25 +22,25 @@ app.get('/',(r,res)=>{
 io.on('connection',socket=>{
   socket.on('typing',(receiver)=>{
     const g = userOnline.find(user=>user.name === receiver)
-  g.socket.emit('typing')
+  socket.to(g.socketId).emit('typing')
     
   })
   socket.on('notyping',(receiver)=>
   {
     const g = userOnline.find(user=>user.name === receiver)
   
-    g.socket.emit('notyping')
+   socket.to(g.socketId).emit('notyping')
   })
   socket.on('getStream',(id,receiver,sender)=>{
     const g = userOnline.find(user=>user.name === receiver)
 
-g.socket.emit('takeStream',id,receiver,sender)
+socket.to(g.socketId).emit('takeStream',id,receiver,sender)
   })
   socket.on('user-connected', (userId,receiver,sender) => {
    
-    let receiverInfo = userOnline.find(user=>user.name==receiver)
+    let g = userOnline.find(user=>user.name==receiver)
   
-    receiverInfo.socket.emit('user-connected', userId,sender) // Tell everyone else in the room that we joined
+ socket.to(g.socketId).emit('user-connected', userId,sender) // Tell everyone else in the room that we joined
 })
     
   
@@ -52,7 +52,7 @@ g.socket.emit('takeStream',id,receiver,sender)
     socket.on('userName',(name)=>{
      
    let   userinfo= {
-        socket:socket,
+       
         socketId:socket.id,
         name:name
       }
@@ -66,26 +66,26 @@ userOnline.push(userinfo)
     
       const g = userOnline.find(user=>user.name == receiver)
     
-      g.socket.emit('chat_message',msg,sender)
+      socket.to(g.socketId).emit('chat_message',msg,sender)
     })
     socket.on('metadata',(metadata,receiver)=>{
       const g = userOnline.find(user=>user.name === receiver)
   
   
        
-        g.socket.emit('newmetadata',metadata)
+     socket.to(g.socketId).emit('newmetadata',metadata)
       
     })
     socket.on('chunks',(chunks,receiver)=>{
       const g = userOnline.find(user=>user.name === receiver)
    
-        g.socket.emit('newchunks',chunks)
+    socket.to(g.socketId).emit('newchunks',chunks)
      
     })
     socket.on('userCam',(sender)=>{
       const g = userOnline.find(user=>user.name == sender)
     
-      g.socket.emit('no_access')
+     socket.to(g.socketId).emit('no_access')
     })
     socket.on('disconnect',()=>{
   
