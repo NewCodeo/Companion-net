@@ -207,7 +207,8 @@ if ($('.header-contact').text()) {
     const video = document.createElement('video')
 
     video.srcObject = stream;
-    video.autoplay = true
+    video.autoplay = true;
+    
 
 
 
@@ -257,13 +258,13 @@ $('.screen-share').click(function(){
 if($('.header-contact').text())
 {
   console.log('screen share--')
-  navigator.mediaDevices.getDisplayMedia({video:true,audio:true}).then(function(stream){
+  navigator.mediaDevices.getDisplayMedia({video:true,audio:{echoCancellation:true}).then(function(stream){
 addVideoStream(stream)
 socket.emit('getStream', myPeer.id, $('.header-contact').text(), userName)
 myPeer.on('call',(call)=>{
 call.answer(stream);
 const video = document.createElement('video')
-video.muted = true
+video.muted = true;
 video.autoplay = true
 
 video.srcObject = stream
@@ -437,10 +438,10 @@ else if ($(this).val().length===0) {
   socket.on('user-connected', (userId, sender) => {
     navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.mozGetUserMedia || navigator.mediaDevices.webkitGetUserMedia;
 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio:{echoCancellation:true} }).then(stream => {
       let call = myPeer.call(userId, stream)
       const video = document.createElement('video')
-      video.muted = true
+      video.muted = true;
       video.autoplay = true
     
 video.className = 'myVid'
