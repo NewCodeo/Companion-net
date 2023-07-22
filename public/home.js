@@ -338,7 +338,7 @@ image.append(link);
       class: 'list-group-item  d-flex receiver justify-content-between align-items-center',
       html:`${hr}:${min}:${am_pm}`+'<br/>'+ sender + ':  ' + msg,
      
-      appendTo: $('.messages');
+      appendTo: $('.messages')
     });
     $('<br/>', {
       appendTo: $('.messages')
