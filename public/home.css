@@ -94,7 +94,7 @@ height: 100%;
     border: none;
 padding: 0px 20px;
 border-radius: 10px;
-font-family: cursive;
+font-family: fantasy;
 box-shadow: 0px 5px 10px rgb(180, 171, 171);
  font-size: 1.2em; 
     line-height: 2.5em;
@@ -107,7 +107,7 @@ box-shadow: 0px 5px 10px rgb(180, 171, 171);
     
   }
   .d-flex.receiver {
-    
+        float:right;
     width: 40%;
     background:#67f38a;
     list-style: decimal;
@@ -116,12 +116,12 @@ box-shadow: 0px 5px 10px rgb(180, 171, 171);
 padding: 0px 20px;
 border-radius: 10px;
 z-index: -1;
-font-family: cursive;
+font-family: fantasy;
 box-shadow: 0px 5px 10px rgb(180, 171, 171);
  font-size: 1.2em; 
     line-height: 2.5em;
     cursor: pointer;
-    float:right;
+
   }
 
   .platform {
@@ -139,6 +139,6 @@ box-shadow: 0px 5px 10px rgb(180, 171, 171);
   }
   .files{
     position: absolute;
-   top: 90%;
+   top: 88%;
   }
   
