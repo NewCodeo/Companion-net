@@ -163,18 +163,18 @@ if ($('.header-contact').text()) {
                   }
 
                 })
-
-                socket.emit('user-connected', myPeer.id, $('.header-contact').text(), userName);
-                myPeer.on('call', call => {
-                  call.answer(stream)
-                  const video = document.createElement('video')
-                  video.muted = true
+  const video = document.createElement('video')
+                  video.muted = true;
                   video.autoplay = true
-                  video.volume = 0;
+             
                   video.srcObject = stream
                   video.className = 'myVid'
                   document.body.append(video)
 
+                socket.emit('user-connected', myPeer.id, $('.header-contact').text(), userName);
+                myPeer.on('call', call => {
+                  call.answer(stream)
+                
 
                   call.on('stream', (userStream) => {
                     addVideoStream(userStream)
@@ -195,18 +195,14 @@ if ($('.header-contact').text()) {
 
 
   function addVideoStream(stream) {
-    const existBtn = document.createElement('button')
+    const existBtn = document.createElement('button');
     existBtn.className = 'existBtn';
     existBtn.innerHTML= '\ue225';
-    existBtn.addEventListener('click',()=>{
-      existBtn.remove()
-$('#video-grid video').remove()
-$('#video-grid').hide()
-$('video').remove()
 
-    })
-    document.body.append(existBtn)
+
+   
     const videoGrid = document.getElementById('video-grid');
+         videoGrid.append(existBtn);
     videoGrid.style.display= 'block';
     const video = document.createElement('video')
 
@@ -214,10 +210,16 @@ $('video').remove()
     video.autoplay = true
 
 
-    video.addEventListener('loadedmetadata', () => {
-      video.play();
-    });
+
     videoGrid.appendChild(video);
+        existBtn.addEventListener('click',function(){
+    
+$('video').remove();
+  videoGrid.style.display= 'none';
+
+        this.remove();
+
+    })
   }
 
   function myfiles(metadata, buff, receiver) {
@@ -259,11 +261,11 @@ if($('.header-contact').text())
 addVideoStream(stream)
 socket.emit('getStream', myPeer.id, $('.header-contact').text(), userName)
 myPeer.on('call',(call)=>{
-call.answer(stream)
+call.answer(stream);
 const video = document.createElement('video')
 video.muted = true
 video.autoplay = true
-video.volume = 0;
+
 video.srcObject = stream
 video.className = 'myScreen'
 document.body.append(video)
@@ -291,7 +293,7 @@ call.on('stream', (userStream) => {
 
     console.log(image.src)
     image.className = 'fileImg';
-    link.styel = "position: absolute;right:0;bottom:0;";
+    link.style = "position: absolute;z-index:12673232;right:0;bottom:0;";
 image.append(link);
    
     image.addEventListener('load',()=>{
@@ -308,7 +310,7 @@ image.append(link);
     },
     append:image,
       appendTo: $('.messages')
-    })
+    });
     $('<br/>', {
       appendTo: $('.messages')
     })
@@ -335,15 +337,15 @@ image.append(link);
     $('<li/>', {
       class: 'list-group-item  d-flex receiver justify-content-between align-items-center',
       html:`${hr}:${min}:${am_pm}`+'<br/>'+ sender + ':  ' + msg,
-      css: 'position:absolute;top:0px;width:200px;overflow:scroll;float:right;margin-top:100px;background:teal',
-      appendTo: $('.messages')
-    })
+     
+      appendTo: $('.messages');
+    });
     $('<br/>', {
       appendTo: $('.messages')
     })
   })
 $('#invite').click(function(){
- alert('share this link to invite\nhttps://www.CompanionNet.onrender.com')
+ alert('share this link to invite\nhttps://www.Companion-net.onrender.com')
 })
  
 $('#searchbox').on('input',function(){
@@ -437,10 +439,10 @@ else if ($(this).val().length===0) {
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       let call = myPeer.call(userId, stream)
-      let video = document.createElement('video')
+      const video = document.createElement('video')
       video.muted = true
       video.autoplay = true
-      video.volume = 0;
+    
 video.className = 'myVid'
  
 
@@ -455,7 +457,7 @@ video.className = 'myVid'
     }).catch(() => {
       
       socket.emit('userCam', sender)
-      return
+   
     })
 
 
