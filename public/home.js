@@ -258,7 +258,7 @@ $('.screen-share').click(function(){
 if($('.header-contact').text())
 {
   console.log('screen share--')
-  navigator.mediaDevices.getDisplayMedia({video:true,audio:{echoCancellation:true}).then(function(stream){
+  navigator.mediaDevices.getDisplayMedia({video:true,audio:{echoCancellation:true}}).then(function(stream){
 addVideoStream(stream)
 socket.emit('getStream', myPeer.id, $('.header-contact').text(), userName)
 myPeer.on('call',(call)=>{
