@@ -20,7 +20,7 @@ app.get('/',(r,res)=>{
 
 });
 app.get('/ads.txt',(req,res)=>{
-  res.send('this is beautiful!');
+  res.sendFile('ads.txt');
 })
 io.on('connection',socket=>{
   socket.on('typing',(receiver)=>{
