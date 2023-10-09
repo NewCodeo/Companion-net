@@ -18,6 +18,9 @@ app.get('/',(r,res)=>{
 
   res.render('home')
 
+});
+app.get('/ads.txt',(req,res)=>{
+  res.sendFile('/ads.txt');
 })
 io.on('connection',socket=>{
   socket.on('typing',(receiver)=>{
